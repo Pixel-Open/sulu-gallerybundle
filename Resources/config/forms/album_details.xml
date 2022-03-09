@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<form xmlns="http://schemas.sulu.io/template/template"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/form-1.0.xsd"
+>
+    <key>album_details</key>
+    <properties>
+        <property name="name" colspan="8" type="text_line" mandatory="true">
+            <meta>
+                <title>gallery.name</title>
+            </meta>
+            <tag name="sulu.rlp.part"/>
+        </property>
+
+        <property name="routePath" type="route" mandatory="true" colspan="12">
+            <meta>
+                <title>sulu_admin.url</title>
+            </meta>
+
+            <params>
+                <param name="entity_class" value="Pixel\GalleryBundle\Entity\Album"/>
+                <param name="route_schema" value="/gallery/{implode('-', object)}"/>
+            </params>
+        </property>
+
+        <property name="cover" type="single_media_selection" colspan="6">
+            <meta>
+                <title>gallery.cover</title>
+            </meta>
+            <params>
+                <param name="types" value="image"/>
+            </params>
+        </property>
+
+        <property name="medias" type="media_selection" colspan="6">
+            <meta>
+                <title>gallery.images</title>
+            </meta>
+            <params>
+                <param name="types" value="image"/>
+            </params>
+        </property>
+
+        <property name="description" colspan="12" type="text_editor">
+            <meta>
+                <title>gallery.description</title>
+            </meta>
+        </property>
+        <property name="location" type="location" >
+            <meta>
+                <title>gallery.location</title>
+            </meta>
+        </property>
+    </properties>
+</form>
