@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% if not album.enabled %}
+        <h1>{{ "alert.message"|trans }}</h1>
+    {% endif %}
+    <h1>{{ album.name }}</h1>
+    {% if album.cover %}
+        {% set media = sulu_resolve_media(album.cover.id, 'fr') %}
+        <img src="{{ media.thumbnails['600x400'] }}" title="{{ media.title }}"/>
+    {% endif %}
+    <p>{{ album.description|raw }}</p>
+    {% if album.location %}
+        <p>{{ "address"|trans }} : {% if album.location.number %}{{ album.location.number }},{% endif %} {{ album.location.street }} {{ album.location.code }} {{ album.location.town }}</p>
+    {% endif %}
+    {% if album.medias['ids'] is defined %}
+        <h2>{{ "images"|trans }}</h2>
+        {% for mediaAlbum in album.medias['ids'] %}
+            {% set media = sulu_resolve_media(mediaAlbum, 'fr') %}
+            <img src="{{ media.thumbnails['600x400'] }}" alt="{{ media.title }}"/>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
