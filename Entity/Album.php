@@ -255,6 +255,34 @@ class Album
         return $translation->getSeo();
     }
 
+    protected function emptySeo(): array
+    {
+        return [
+            "seo" => [
+                "title" => "",
+                "description" => "",
+                "keywords" => "",
+                "canonicalUrl" => "",
+                "noIndex" => "",
+                "noFollow" => "",
+                "hideinSitemap" => ""
+            ]
+        ];
+    }
+
+    /**
+     * @Serializer\VirtualProperty(name="ext")
+     * @return array|null
+     */
+    public function getExt(): ?array
+    {
+        $translation = $this->getTranslation($this->locale);
+        if(!$translation){
+            return null;
+        }
+        return ($translation->getSeo()) ? ['seo' => $translation->getSeo()] : $this->emptySeo();
+    }
+
     public function setSeo(?array $seo): self
     {
         $translation = $this->getTranslation($this->locale);
