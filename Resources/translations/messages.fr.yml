@@ -1,3 +1,5 @@
 alert.message: /!\ La page n'est pas visible sur le site ! /!\
 address: Adresse
 images: Images
+gallery: Galerie
+gallery.emptyGallery: Sélectionner une galerie
