@@ -31,7 +31,13 @@ class AlbumController extends AbstractController
     public function indexAction(Album $album, $attributes = [], $preview = false, $partial = false): Response
     {
 
+        if (!$album->getSeo()) {
+            $seo = [
+                "title" => $album->getName(),
+            ];
 
+            $album->setSeo($seo);
+        }
         $parameters = $this->get('sulu_website.resolver.template_attribute')->resolve([
             'album' => $album,
             'localizations' => $this->getLocalizationsArrayForEntity($album),
