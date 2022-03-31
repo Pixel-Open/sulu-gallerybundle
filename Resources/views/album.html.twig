@@ -1,23 +1,78 @@
 {% extends 'base.html.twig' %}
 
+{% block meta %}
+    {% include "@SuluWebsite/Extension/seo.html.twig" with {
+        "seo": album.seo|default([]),
+        "content": content|default([]),
+        "localizations": localizations|default([]),
+        "shadowBaseLocale": shadowBaseLocale|default(),
+        "defaultLocale": app.request.locale
+    } %}
+{% endblock %}
+
 {% block content %}
-    {% if not album.enabled %}
-        <h1>{{ "alert.message"|trans }}</h1>
-    {% endif %}
-    <h1>{{ album.name }}</h1>
-    {% if album.cover %}
-        {% set media = sulu_resolve_media(album.cover.id, 'fr') %}
-        <img src="{{ media.thumbnails['600x400'] }}" title="{{ media.title }}"/>
-    {% endif %}
-    <p>{{ album.description|raw }}</p>
-    {% if album.location %}
-        <p>{{ "address"|trans }} : {% if album.location.number %}{{ album.location.number }},{% endif %} {{ album.location.street }} {{ album.location.code }} {{ album.location.town }}</p>
-    {% endif %}
-    {% if album.medias['ids'] is defined %}
-        <h2>{{ "images"|trans }}</h2>
-        {% for mediaAlbum in album.medias['ids'] %}
-            {% set media = sulu_resolve_media(mediaAlbum, 'fr') %}
-            <img src="{{ media.thumbnails['600x400'] }}" alt="{{ media.title }}"/>
-        {% endfor %}
-    {% endif %}
+    <div class="max-w-7xl mx-4 xl:mx-auto">
+
+        {% if not album.enabled %}
+            <h1>{{ "alert.message"|trans }}</h1>
+        {% endif %}
+        <div class="singleAssociation my-8">
+            <div class="relative mb-8">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-300"></div>
+                </div>
+                <div class="relative flex justify-start">
+                    <span class="pr-6 bg-white text-2xl uppercase font-light text-gray-900">
+                      {{ album.name }}
+                    </span>
+
+                </div>
+            </div>
+            <div class="sm:grid sm:grid-cols-2 sm:gap-8">
+                <div class="content">
+
+                    <div class="prose max-w-none py-12">
+                        {{ album.description|raw }}
+                    </div>
+
+                </div>
+                <div class="image">
+                    {% if album.cover %}
+                        {% set media = sulu_resolve_media(album.cover.id, 'fr') %}
+                        <a href="{{ media.url }}" data-fancybox="gallery"> <img class="rounded-xl" src="{{ media.thumbnails['600x400'] }}" title="{{ album.name }}"/></a>
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="masonry sm:masonry-sm md:masonry-md mt-8">
+                {% if album.medias['ids'] is defined %}
+                    {% for mediaAlbum in album.medias['ids'] %}
+                        {% set media = sulu_resolve_media(mediaAlbum, 'fr') %}
+                        {% if media %}
+                            <a href="{{ media.url }}"  data-fancybox="gallery"><img src="{{ media.thumbnails['massonry'] }}" title="{{ album.name }}"
+                                                                                    class="break-inside rounded-xl "/></a>
+
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
+{% block style %}
+    {{ parent() }}
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+    />
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
 {% endblock %}

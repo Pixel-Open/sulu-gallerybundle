@@ -104,5 +104,12 @@
             <tag name="sulu_trash.restore_configuration_provider"/>
         </service>
 
+        <!--Link-->
+        <service id="sulu_album.album_link_provider" class="Pixel\GalleryBundle\Link\AlbumLinkProvider">
+            <argument type="service" id="gallery.album_repository"/>
+            <argument type="service" id="translator.default"/>
+            <tag name="sulu.link.provider" alias="galerie"/>
+        </service>
+
     </services>
 </container>
