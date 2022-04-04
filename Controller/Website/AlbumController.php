@@ -31,7 +31,7 @@ class AlbumController extends AbstractController
     public function indexAction(Album $album, $attributes = [], $preview = false, $partial = false): Response
     {
 
-        if (!$album->getSeo()) {
+        if (!$album->getSeo() || (isset($album->getSeo()['title'])) && !$album->getSeo()['title']) {
             $seo = [
                 "title" => $album->getName(),
             ];
