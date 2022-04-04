@@ -42,6 +42,11 @@ class GalleryExtension extends Extension implements PrependExtensionInterface
                                 'list' => 'gallery.get_albums',
                             ],
                         ],
+                        'gallery_settings' => [
+                            'routes' => [
+                                'detail' => 'gallery.get_gallery-settings'
+                            ]
+                        ]
                     ],
                     'field_type_options' => [
                         'selection' => [
