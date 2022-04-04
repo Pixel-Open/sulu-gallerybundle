@@ -4,3 +4,9 @@ services:
     autoconfigure: true
   Pixel\GalleryBundle\Controller\Website\:
     resource: '../../Controller/Website'
+
+  Pixel\GalleryBundle\Twig\SettingsExtension:
+    public: false
+    autowire: true
+    tags:
+      - {name: twig.extension}
