@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6 (17/06/2024)
+
++ Compatible Symfony 6.4 et Sulu 2.6
++ Ajout phpstan
+
+## 2.4.3 (04/04/2022)
+
++ Ajout de la configuration
+- Fix meta title
+
 ## 2.4.2 (31/03/2022)
 
 + Mise en page de la vue détail

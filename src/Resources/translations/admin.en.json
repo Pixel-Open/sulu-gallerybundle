@@ -1,0 +1,19 @@
+{
+  "gallery": "Gallery",
+  "gallery.name": "Name",
+  "gallery.cover": "Cover",
+  "gallery.images": "Images",
+  "gallery.description": "Description",
+  "gallery.enabled": "Activate?",
+  "gallery.location": "Location",
+  "gallery.searchName": "Gallery",
+  "gallery.list": "Galleries list",
+  "gallery.emptyGallery": "Select a gallery",
+  "gallery.settings": "Galleries management",
+  "gallery_settings.defaultImage": "Default image",
+  "sulu_activity.resource.albums": "Gallery",
+  "sulu_activity.description.albums.created": "{userFullName} created the gallery \"{resourceTitle}\"",
+  "sulu_activity.description.albums.modified" : "{userFullName} edit the gallery \"{resourceTitle}\"",
+  "sulu_activity.description.albums.removed": "{userFullName} removed the gallery \"{resourceTitle}\"",
+  "sulu_activity.description.albums.restored": "{userFullName} restored the gallery \"{resourceTitle}\""
+}

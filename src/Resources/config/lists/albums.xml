@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<list xmlns="http://schemas.sulu.io/list-builder/list">
+    <key>albums</key>
+    <joins name="translation">
+        <join>
+            <entity-name>Pixel\GalleryBundle\Entity\AlbumTranslation</entity-name>
+            <field-name>Pixel\GalleryBundle\Entity\Album.translations</field-name>
+            <condition>Pixel\GalleryBundle\Entity\AlbumTranslation.locale = :locale</condition>
+        </join>
+    </joins>
+
+    <joins name="changer" ref="translation">
+        <join>
+            <entity-name>%sulu.model.user.class%_changer</entity-name>
+            <field-name>Pixel\GalleryBundle\Entity\AlbumTranslation.changer</field-name>
+        </join>
+        <join>
+            <entity-name>%sulu.model.contact.class%_changer</entity-name>
+            <field-name>%sulu.model.user.class%_changer.contact</field-name>
+        </join>
+    </joins>
+
+    <joins name="creator" ref="translation">
+        <join>
+            <entity-name>%sulu.model.user.class%_creator</entity-name>
+            <field-name>Pixel\GalleryBundle\Entity\AlbumTranslation.creator</field-name>
+        </join>
+        <join>
+            <entity-name>%sulu.model.contact.class%_creator</entity-name>
+            <field-name>%sulu.model.user.class%_creator.contact</field-name>
+        </join>
+    </joins>
+
+
+    <properties>
+        <property name="id" visibility="no" translation="sulu_admin.id">
+            <field-name>id</field-name>
+            <entity-name>Pixel\GalleryBundle\Entity\Album</entity-name>
+        </property>
+
+        <property name="title" visibility="always" searchability="yes" translation="sulu_admin.title">
+            <field-name>name</field-name>
+            <entity-name>Pixel\GalleryBundle\Entity\AlbumTranslation</entity-name>
+
+            <joins ref="translation"/>
+        </property>
+
+        <property name="enabled" visibility="always" translation="gallery.enabled" type="bool">
+            <field-name>enabled</field-name>
+            <entity-name>Pixel\GalleryBundle\Entity\Album</entity-name>
+        </property>
+
+
+    </properties>
+</list>
