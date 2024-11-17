@@ -1,6 +1,6 @@
 # Gallery Bundle
 
-![GitHub release (with filter)](https://img.shields.io/github/v/release/Pixel-Developpement/sulu-gallery-bundle?style=for-the-badge)
+![GitHub release (with filter)](https://img.shields.io/github/v/release/Pixel-Open/sulu-gallerybundle?style=for-the-badge)
 [![Dependency](https://img.shields.io/badge/sulu-2.5-cca000.svg?style=for-the-badge)](https://sulu.io/)
 
 ## Presentation
@@ -16,8 +16,7 @@ The galleries are pages the allows you to display pictures (of a place of intere
 
 ## Requirement
 
-* PHP >= 7.4
-* Sulu >= 2.4
+* PHP >= 8.1
 * Symfony >= 5.4
 * Composer
 

@@ -1,17 +1,16 @@
 {
-  "name": "pixeldev/sulu-gallerybundle",
+  "name": "pixelopen/sulu-gallerybundle",
   "type": "sulu-bundle",
   "description": "Manage gallery for Sulu",
   "keywords": [
     "sulu",
-    "suluCms",
     "gallery"
   ],
-  "homepage": "https://github.com/Pixel-Developpement/sulu-gallery-bundle",
+  "homepage": "https://github.com/Pixel-Open/sulu-gallerybundle",
   "license": "MIT",
   "authors": [
     {
-      "name": "Pixel Developpement"
+      "name": "Pixel Open"
     }
   ],
   "require": {
