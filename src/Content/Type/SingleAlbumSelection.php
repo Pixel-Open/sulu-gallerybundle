@@ -6,10 +6,12 @@ namespace Pixel\GalleryBundle\Content\Type;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Pixel\GalleryBundle\Entity\Album;
+use Sulu\Bundle\ReferenceBundle\Application\Collector\ReferenceCollectorInterface;
+use Sulu\Bundle\ReferenceBundle\Infrastructure\Sulu\ContentType\ReferenceContentTypeInterface;
 use Sulu\Component\Content\Compat\PropertyInterface;
 use Sulu\Component\Content\SimpleContentType;
 
-class SingleAlbumSelection extends SimpleContentType
+class SingleAlbumSelection extends SimpleContentType implements ReferenceContentTypeInterface
 {
     protected EntityManagerInterface $entityManager;
 
@@ -39,5 +41,19 @@ class SingleAlbumSelection extends SimpleContentType
         return [
             'id' => $property->getValue(),
         ];
+    }
+
+    public function getReferences(PropertyInterface $property, ReferenceCollectorInterface $referenceCollector, string $propertyPrefix = ''): void
+    {
+        $data = $property->getValue();
+        if (!isset($data) || !is_int($data)) {
+            return;
+        }
+
+        $referenceCollector->addReference(
+            Album::RESOURCE_KEY,
+            (string) $data,
+            $propertyPrefix . $property->getName()
+        );
     }
 }
